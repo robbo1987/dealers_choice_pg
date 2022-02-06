@@ -1,5 +1,23 @@
 console.log('hello world');
 const pg = require ('pg');
+const express = require('express')
+const app = express();
+
+app.get('/', async (req, res,next) => {
+   try{ 
+       const response= await client.query('Select * FROM lawyers');
+       res.send(response.rows)
+   }
+
+
+   catch (ex){
+        console.log(ex)
+   }
+})
+
+const port = process.env.PORT || 3000;
+
+
 const client = new pg.Client('postgres://localhost/robbys_law_firm_db');
 
 const syncAndSeed = async() => {
@@ -45,6 +63,9 @@ try{
     await client.connect();
     await syncAndSeed()
     console.log('connected to database');
+    app.listen(port,() => {
+        console.log(`listening on port ${port}`);
+    })
 }
 
 catch(ex) {
