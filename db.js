@@ -21,10 +21,10 @@ const synchAndSeed = async() => {
             lawyer_id INTEGER REFERENCES lawyers(id)
         );
 
-        INSERT INTO lawyers (id,name) VALUES (1,'amy');
-        INSERT INTO lawyers (id,name) VALUES (2,'elaine');
-        INSERT INTO lawyers (id,name) VALUES (3,'abe');
-        INSERT INTO lawyers (id,name) VALUES (4,'louise');
+        INSERT INTO lawyers (id,name) VALUES (1,'Amy');
+        INSERT INTO lawyers (id,name) VALUES (2,'Elaine');
+        INSERT INTO lawyers (id,name) VALUES (3,'Abe');
+        INSERT INTO lawyers (id,name) VALUES (4,'Louise');
         INSERT INTO job_title(id,name,lawyer_id) VALUES (1, 'defense_attorney', 1);
         INSERT INTO job_title(id,name,lawyer_id) VALUES (2, 'party_planner', 1);
         INSERT INTO job_title(id,name,lawyer_id) VALUES (3, 'prosecutor', 2);

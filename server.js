@@ -30,6 +30,7 @@ app.get('/', async (req, res,next) => {
             }
             </style>
                 <body>
+                <title> Robby's Law Firm</title>
                     <h1>
                         Robby's Law Firm
                     </h1>
@@ -63,7 +64,7 @@ app.get('/', async (req, res,next) => {
 app.get('/lawyers/:id', async (req, res,next) => {
     try{ 
         let response= await client.query('Select * FROM lawyers WHERE id=$1',[req.params.id]);
-        const lawyers = response.rows[0]
+        const lawyers = response.rows
         response = await client.query('SELECT job_title.name AS jobName, job_title.lawyer_id, lawyers.* FROM lawyers JOIN job_title ON job_title.lawyer_id = lawyers.id WHERE lawyers.id=$1',[req.params.id]);
         const jobs = response.rows
         res.send(`
@@ -90,11 +91,19 @@ app.get('/lawyers/:id', async (req, res,next) => {
              }
              </style>
                  <body>
+                 <title> Robby's Law Firm</title>
                      <h1>
                         Robby's Law Firm
                      </h1>
                      <h2>
-                        Featured Attorney
+                        Featured Attorney: ${
+                            lawyers.map(lawyer => `
+                            
+                            
+                                ${lawyer.name}
+                            
+                            `).join('')
+                        }
                      </h2>
                     
                      <ul>
